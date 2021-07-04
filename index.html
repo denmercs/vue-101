@@ -8,10 +8,23 @@
     <script src="https://unpkg.com/vue@next"></script>
 </head>
 <body>
-    <section id="user-goal">
+    <section id="user-goals">
         <h2>My Course Goal</h2>
-        <p>{{ outputGoal() }}</p>
-        <p>Learn more <a v-bind:href="vueLink" target="_blank">About Vue</a>.</p>
+        <input type="text"  v-model="enteredGoalValue">
+        <button @click="addGoal">Add Goal</button>
+        <p v-if="goals.length === 0">No goals have been added yet - please start adding...</p>
+        <ul v-else>
+            <li v-for="(goal, index) in goals" :key="goal" @click="removeGoal(index)">
+                <p>{{goal}} - {{index}}</p>
+                <input type="text" @click.stop>
+            </li>
+        </ul>
+        <!-- <ul>
+            <li v-for="(value, key, index) in {name: 'Max', age: 31}">{{ key }}: {{ value }} - {{index}}</li>
+        </ul>
+        <ul>
+            <li v-for="num in 10">{{num}}</li>
+        </ul> -->
     </section>
     <script src="app.js"></script>
 </body>
